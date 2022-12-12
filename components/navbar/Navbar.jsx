@@ -26,7 +26,7 @@ const Navbar = () => {
     <div className={styles.navbar__main}>
       <div className={styles.navbar__main_links}>
         <div className={styles.navbar__main_logo}>
-          <h1>BattleStreak</h1>
+          <h1>Trixie</h1>
         </div>
         <div className={styles.navbar__main_links_container}>
           <Menu />

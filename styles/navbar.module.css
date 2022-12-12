@@ -79,7 +79,7 @@
 
 .navbar__main_logo h1 {
     color: #fff;
-    font-family: var(--cursive-font);
+    font-family: var(--anton-font);
     font-weight: 500;
     text-transform: capitalize;
 }
