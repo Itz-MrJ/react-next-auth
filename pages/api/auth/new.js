@@ -15,8 +15,8 @@ export default async function handler(req, res){
     const { database } = await connectToDatabase();
     const d = new Date();
     const newDateObj = new Date();
-    // demo 5 minutes
-    newDateObj.setTime(d.getTime() + (5 * 60 * 1000));
+    // demo 60 minutes
+    newDateObj.setTime(d.getTime() + (60 * 60 * 1000));
     let query = await database.collection("userData").findOne({'username': req.query['username']})
     if(query!=null)
     if(query['username'] == req.query['username'] && query['password'] == req.query['password']){

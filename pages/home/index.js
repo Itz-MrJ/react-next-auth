@@ -1,6 +1,6 @@
-
-import React, { useEffect } from 'react'
+import React, { useEffect } from 'react';
 import { Navbar } from '../../components';
+import styles from '../../styles/navbar.module.css';
 
 const index = () => {
     async function checkStorage() {
@@ -10,9 +10,12 @@ const index = () => {
     }
     return (
         <div>
-            <Navbar />
-            <div onLoad={useEffect(() => {checkStorage()}, [false])}></div>
-            home page
+            <div className={styles.gradient__bg}>
+                <Navbar />
+                <div onLoad={useEffect(() => {checkStorage()}, [false])}></div>
+                angrytools.com/gradient
+                animista.net
+            </div>
         </div>
     )
 }
