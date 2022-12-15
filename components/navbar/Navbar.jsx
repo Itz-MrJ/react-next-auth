@@ -4,11 +4,8 @@ import styles from '../../styles/navbar.module.css';
 
 const Menu = () => (
   <>
-    <p><a href="#home">Home</a></p>
-    <p><a href="#wgpt3">FAQ</a></p>
-    <p><a href="#possibility">Open AI</a></p>
-    <p><a href="#features">Case Studies</a></p>
-    <p><a href="#blog">Library</a></p>
+    <p><a href="/home">Home</a></p>
+    {/* <p><a href="#cart">Cart</a></p> */}
   </>
 )
 
@@ -33,7 +30,7 @@ const Navbar = () => {
         </div>
       </div>
       <div className={styles.navbar__main_sign}>
-        <AuthBtn />
+        {/* <AuthBtn /> */}
       </div>
       <div className={styles.navbar__main_menu}>
         {toggleMenu
@@ -46,7 +43,7 @@ const Navbar = () => {
             <div className={styles.navbar__main_menu_container_links}>
               <Menu />
               <div className={styles.navbar__main_menu_container_links_sign}>
-                <AuthBtn />
+                {/* <AuthBtn /> */}
               </div>
             </div>
           </div>
