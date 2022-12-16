@@ -1,0 +1,14 @@
+.bill__main{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 15% 45%;
+}
+
+.bill__container p,
+.bill__container span{
+    color: white;
+    font-family: var(--anton-font);
+    font-size: 25px;
+    font-weight: 500;
+}

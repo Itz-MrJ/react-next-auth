@@ -1,35 +1,12 @@
-import { Card } from '@mui/material';
 import axios from 'axios';
-import { React, useEffect, useState } from 'react'
-import styles from '../../styles/itemlist.module.css';
+import React, { useEffect, useState } from 'react';
+import Navbar from '../components/navbar/Navbar';
+import styles from '../styles/navbar.module.css';
+import io from 'Socket.IO-client';
+import stylesa from '../styles/bill.module.css';
+let socket;
 
-function RenderingArrayOfObjects() {
-    axios.get(`http://localhost:3000/api/fetchItems`)
-        .then((res) => {
-            const listItems = res.data.map(
-                (element) => {
-                    console.log(element);
-                    return (
-                        <div className={styles.card} key={element['item_code']}>
-                            <img src={element['imageUrl']} alt={element['item_name']} style={{ width: 240, height: 200 }} />
-                            <div className={styles.container}>
-                                <h4><b>{element['item_name']}</b></h4>
-                                <p>₹{element['price']}</p>
-                            </div>
-                        </div>
-                    )
-                }
-            )
-            return (
-                <>
-                    {listItems}
-                </>
-            )
-        })
-}
-
-
-const ListItems = () => {
+const kitchen = () => {
     const [arr, setArr] = useState([]);
     const [result, setResult] = useState([]);
     // var [check, setCheck] = useState([false, false, false, false]);
@@ -83,20 +60,24 @@ const ListItems = () => {
     }, [false])
 
     return (
-        <div className={styles.item__main}>
-            <div className={styles.items__main_links}>
-                <div className={styles.items__main_links_container}>
-                    {arr.map(item => {
-                        return <Carda imageUrl={item['imageUrl']} item_name={item['item_name']} price={item['price']} />
-                    })}
-                    {/* <Carda imageUrl={"https://cdn.discordapp.com/attachments/1052207477288095774/1052207673862529064/Z.png"} item_name={"Cheese Sandwich"} price={"70"} check={0} />
-                    <Carda imageUrl={"https://media.discordapp.net/attachments/1052207477288095774/1052600545707294760/3831dbe2-352e-4409-a2e2-fc87d11cab0a.png"} item_name={"Cheese Burger"} price={"70"} check={1} />
-                    <Carda imageUrl={"https://media.discordapp.net/attachments/1052207477288095774/1052987573137592370/1576855328048.png"} item_name={"Chicken Cutlet"} price={"90"} check={2} />
-                    <Carda imageUrl={"https://cdn.discordapp.com/attachments/1052207477288095774/1052207673862529064/Z.png"} item_name={"Cheese Sandwich"} price={"90"} check={3} /> */}
+        <div onLoad={useEffect(() => {
+                axios.post(`http://localhost:3000/api/getInfo?username=${localStorage.getItem("username")}`)
+                .then((res) => {
+                    if (localStorage.getItem('userToken') != res.data['accessCode'] || localStorage.getItem('user')!='kitchen') {
+                        location.replace('/authentication');
+                    }
+                })
+        })}>
+            <div className={styles.item__main}>
+                <div className={styles.items__main_links}>
+                    <div className={styles.items__main_links_container}>
+                        {arr.map(item => {
+                            return <Carda imageUrl={item['imageUrl']} item_name={item['item_name']} price={item['price']} />
+                        })}
+                    </div>
                 </div>
             </div>
         </div>
     )
 }
-
-export default ListItems
+export default kitchen

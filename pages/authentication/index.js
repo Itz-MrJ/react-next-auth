@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react'
 import styles from '../../styles/auth.module.css'
 
 
+
 const index = () => {
     const [user, setUser] = useState('');
     const [disabled, setDisabled] = useState(true);
     const [password, setPassword] = useState('');
-    function clearStorage(){
+    function clearStorage() {
         localStorage.setItem('username', null);
         localStorage.setItem('exp', null);
         localStorage.setItem('userToken', null);
@@ -21,12 +22,12 @@ const index = () => {
             .then((res) => res.json())
             .then((json) => {
                 if (json['code'] == "CHECK01") { alert(json['message']); return; }
-                if (json['code'] == 'CHECK02') { 
-                    if(localStorage.getItem('username')!=null || localStorage.getItem('username')!='null')
-                    alert(json['message']);
+                if (json['code'] == 'CHECK02') {
+                    if (localStorage.getItem('username') != null || localStorage.getItem('username') != 'null')
+                        alert(json['message']);
                     clearStorage();
-                    alert("⚠ Session expired"); 
-                    return; 
+                    alert("⚠ Session expired");
+                    return;
                 }
                 if (json['code'] == "INVALID01") {
                     clearStorage();
@@ -40,8 +41,8 @@ const index = () => {
     async function submitbruh() {
         setDisabled(true);
         console.log(user, password)
-        if (user.toString().split(' ').length > 1 || password.toString().split(' ').length > 1) { alert("Neither username nor password can contain white spaces.");setDisabled(false); return; }
-        if (user.length < 4 || password.length < 8) { alert("Username should contain more than 4 characters & Password more than 8 characters.");setDisabled(false); return }
+        if (user.toString().split(' ').length > 1 || password.toString().split(' ').length > 1) { alert("Neither username nor password can contain white spaces."); setDisabled(false); return; }
+        if (user.length < 4 || password.length < 8) { alert("Username should contain more than 4 characters & Password more than 8 characters."); setDisabled(false); return }
         if (user == null || password == null || user == 'null') return setDisabled(false);
         await fetch(`/api/auth/new?username=${user}&password=${password}`, { method: 'POST' })
             .then((res) => res.json())
@@ -63,22 +64,30 @@ const index = () => {
     //     .then((json) => {
     //         console.log(json)
     //     })
+
+
+
+
     return (
         <div>
-            <div className={styles.center}>
-                <div onLoad={useEffect(() => {checkAuthenticated();return;}, [false])}>
-
+            <div className={styles.center} >
+                <h1 className={styles.trixie}>Trixie</h1>
+                <div onLoad={useEffect(() => { checkAuthenticated(); return; }, [false])}>
                     Username:
                 </div>
                 <input disabled={disabled} name='Username' placeholder='Username' value={user} maxLength={12} minLength={4} id='username' onChange={(ee) => setUser(ee.target.value)}></input>
-                <div>
+                <div>x
                     Password:
                 </div>
                 <input disabled={disabled} name='Password' placeholder='Password' value={password} maxLength={12} minLength={8} id='password' onChange={(ee) => setPassword(ee.target.value)}></input>
 
                 <button disabled={disabled} onClick={submitbruh}>Submit</button>
+
+
             </div>
+
         </div>
+
     )
 }
 

@@ -1,4 +1,36 @@
-.center{
-    align-items: center;
-    margin-left: 100px;
+.center {
+    position: absolute;
+    max-width: fit-content;
+    max-height: fit-content;
+    margin: 15% 45%;
+}
+
+
+.center button {
+    margin-top: 20px;
+    border: none;
+    text-decoration: none;
+    background-color: #f44336;
+    border-radius: 5px;
+    margin-left: 50px;
+    padding: 7px 16px;
+}
+
+.center input {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.trixie {
+    font-family: var(--anton-font);
+    color: azure;
+    font-weight: 500;
+    padding: 20px 50px;
+    margin-top: 10px;
+    font-size: 45px;
 }

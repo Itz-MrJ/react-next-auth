@@ -11,8 +11,13 @@ const Menu = () => (
 
 const AuthBtn = () => (
   <>
-    <p>Sign In</p>
-    <button type='button'>Sign Up</button>
+    <p onClick={() => {
+      localStorage.setItem('username', null);
+      localStorage.setItem('exp', null);
+      localStorage.setItem('userToken', null);
+      location.replace('/authentication');
+    }}>Log out</p>
+    {/* <button type='button'>Sign Up</button> */}
   </>
 )
 
@@ -30,7 +35,7 @@ const Navbar = () => {
         </div>
       </div>
       <div className={styles.navbar__main_sign}>
-        {/* <AuthBtn /> */}
+        <AuthBtn />
       </div>
       <div className={styles.navbar__main_menu}>
         {toggleMenu
@@ -43,7 +48,7 @@ const Navbar = () => {
             <div className={styles.navbar__main_menu_container_links}>
               <Menu />
               <div className={styles.navbar__main_menu_container_links_sign}>
-                {/* <AuthBtn /> */}
+                <AuthBtn />
               </div>
             </div>
           </div>
