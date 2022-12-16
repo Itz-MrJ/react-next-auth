@@ -24,6 +24,7 @@ const bill = () => {
     async function checkStorage() {
         axios.post(`http://localhost:3000/api/getInfo?username=${localStorage.getItem("username")}`)
             .then((res) => {
+                
                 if (localStorage.getItem('exp') == null || localStorage.getItem('exp') == 'null' || new Date(localStorage.getItem('exp')) < new Date() || localStorage.getItem('userToken') != res.data['accessCode']) {
                     return location.replace('/authentication');
                 }
