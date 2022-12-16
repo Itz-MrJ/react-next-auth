@@ -63,6 +63,7 @@ const kitchen = () => {
         <div onLoad={useEffect(() => {
                 axios.post(`http://localhost:3000/api/getInfo?username=${localStorage.getItem("username")}`)
                 .then((res) => {
+                    console.log(localStorage.getItem('userToken') != res.data['accessCode'], localStorage.getItem('user')!='kitchen')
                     if (localStorage.getItem('userToken') != res.data['accessCode'] || localStorage.getItem('user')!='kitchen') {
                         location.replace('/authentication');
                     }

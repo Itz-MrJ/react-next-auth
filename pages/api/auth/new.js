@@ -10,6 +10,7 @@ const refreshToken = () => {
     return result
 }
 export default async function handler(req, res){
+    console.log("here")
     if(req['method']!='POST')return res.status(200).json({'code': 'AUTH01','error':true, 'message': "Invalid method"});
 
     const { database } = await connectToDatabase();
