@@ -24,7 +24,7 @@ const bill = () => {
     async function checkStorage() {
         axios.post(`http://localhost:3000/api/getInfo?username=${localStorage.getItem("username")}`)
             .then((res) => {
-                
+
                 if (localStorage.getItem('exp') == null || localStorage.getItem('exp') == 'null' || new Date(localStorage.getItem('exp')) < new Date() || localStorage.getItem('userToken') != res.data['accessCode']) {
                     return location.replace('/authentication');
                 }
@@ -34,16 +34,16 @@ const bill = () => {
                             console.log(res.data);
                             alert("✅ Successfully placed your order!");
                             setMessage("Successfully placed your order");
-                                // setUsername(res.data['username']);
-                                // setOrdern(res.data['orderNumber']);
-                                // setItemName(res.data['item_name']);
-                                // setCode(res.data['code']);
+                                setUsername(res.data['username']);
+                                setOrdern(res.data['orderNumber']);
+                                setItemName(res.data['item_name']);
+                                setCode(res.data['code']);
                         }
-                        // else location.replace('/home');
-                        setUsername("aarya");
-                        setOrdern(18);
-                        setItemName("Cheese Sandwich");
-                        setCode(999999);
+                        else location.replace('/home');
+                        // setUsername("aarya");
+                        // setOrdern(18);
+                        // setItemName("Cheese Sandwich");
+                        // setCode(999999);
                         localStorage.setItem('item_name', null);
                     })
             })

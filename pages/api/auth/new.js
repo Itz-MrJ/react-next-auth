@@ -18,10 +18,14 @@ export default async function handler(req, res){
     const newDateObj = new Date();
     // demo 60 minutes
     newDateObj.setTime(d.getTime() + (60 * 60 * 1000));
-    let query = await database.collection("userData").findOne({'username': req.query['username']})
+    let query = await database.collection("userData").findOne({'username': req.query['username']});
     if(query!=null)
     if(query['username'] == req.query['username'] && query['password'] == req.query['password']){
-        var code = refreshToken()
+        console.log(query);
+        var code;
+        if(query['username']!='kitchen')
+        code = refreshToken();
+        else code = "lmao.lmao";
         await database.collection("userData").updateOne({'username': req.query['username']}, {$set: {'exp': newDateObj, 'accessCode': code}}, {upsert: true})
         return res.status(200).json({'code': 'LOGINCHECK01', 'message': `Welcome back ${req.query['username']}!`,'error': false, 'accessCode': code, 'exp': newDateObj});
     }

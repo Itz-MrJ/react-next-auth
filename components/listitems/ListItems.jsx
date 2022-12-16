@@ -63,18 +63,6 @@ const ListItems = () => {
             </div>
         </>
     )
-    // axios.get(`http://localhost:3000/api/fetchItems`)
-    //     // .then(res =>{
-    //     //     console.log(res.data)
-    //     //     res.data.forEach(ele => {
-
-    //     //             arr.push(<Carda imageUrl={"https://cdn.discordapp.com/attachments/1052207477288095774/1052207673862529064/Z.png"} item_name={"Cheese Sandwich"} price={"70"} check={0} />);
-    //     //             // arr.push(<Carda imageUrl={ele['imageUrl']} item_name={ele['item_name']} price={ele['prddfice']}/>)
-    //     //     })
-    //     // })
-    //     .then(data => {
-    //         return data
-    //     })
 
     useEffect(() => {
         fetch(`http://localhost:3000/api/fetchItems`)
